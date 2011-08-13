@@ -108,17 +108,26 @@ Kohana::$config->attach(new Config_File);
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-	'hyla'       => MODPATH.'hyla',                // Core hyla module
 	'assets'     => MODPATH.'assets',              // Asset Library
 	'media'      => MODPATH.'media',               // Kohana CFS Media Module
 	'kostache'   => MODPATH.'kostache',            // View Classes
 	'minion'     => MODPATH.'minion',              // CLI module
-	'database'   => MODPATH.'database',            // Database access
-	'orm'        => MODPATH.'orm',                 // ORM modeling
 	'unittest'   => MODPATH.'unittest',            // PHPUnit support
+	'events'     => MODPATH.'event-dispatcher',    // Event Dispatcher,
+	'yform'      => MODPATH.'yform',               // Form Generation
+	'config-couchdb' => MODPATH.'config-driver-couchdb', // Config driver for CouchDB
 	// temporary until theme is taken from user/site settings
-	'theme'      => HYLAPATH.'themes/_default',     // default hyla theme
+	'theme'      => HYLAPATH.'themes/_default',    // default hyla theme
+	'tracker'    => HYLAPATH.'plugins/tracker',    // Tracker Plugin
+	'hyla'       => HYLAPATH.'core',               // Core hyla module
 ));
 
 // Include Sag for working with CouchDB
 require Kohana::find_file('vendor/sag/src', 'Sag');
+
+// Attach the CouchDB config reader
+$config = Kohana::$config->load('couchdb');
+$sag = new Sag($config->host, $config->port);
+$sag->setDatabase($config->db);
+Kohana::$config->attach(new Config_CouchDB_Writer($sag));
+unset($config, $sag);

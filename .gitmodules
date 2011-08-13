@@ -16,6 +16,15 @@
 [submodule "kohana/modules/assets"]
 	path = kohana/modules/assets
 	url = git://github.com/hyla/kohana-assets.git
-[submodule "kohana/modules/hyla/vendor/sag"]
-	path = kohana/modules/hyla/vendor/sag
+[submodule "kohana/modules/event-dispatcher"]
+	path = kohana/modules/event-dispatcher
+	url = git://github.com/hyla/kohana-event-dispatcher.git
+[submodule "kohana/modules/yform"]
+	path = kohana/modules/yform
+	url = git://github.com/hyla/kohana-yform.git
+[submodule "hyla/core/vendor/sag"]
+	path = hyla/core/vendor/sag
 	url = git://github.com/hyla/sag.git
+[submodule "kohana/modules/config-driver-couchdb"]
+	path = kohana/modules/config-driver-couchdb
+	url = git@github.com:hyla/kohana-config-driver-couchdb.git

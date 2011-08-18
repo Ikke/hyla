@@ -9,14 +9,16 @@
 		</tr>
 	</thead>
 	<tbody>
+		{{#can_create_ticket}}
 		<tr>
 			<td colspan="3"><a href="{{#urls}}{{new-ticket}}{{/urls}}">New Ticket</a></td>
 		</tr>
+		{{/can_create_ticket}}
 		{{#tickets}}
 		<tr>
 			<td class="title"><a href="{{url}}">{{title}}</a></td>
-			<td>{{created_on}}</td>
-			<td>{{updated_on}}</td>
+			<td>{{created_on_date_time}}</td>
+			<td>{{updated_on_date_time}}</td>
 		</li>
 		{{/tickets}}
 		{{^tickets}}

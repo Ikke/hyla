@@ -94,6 +94,8 @@ Kohana::init(array(
 	'index_file' => FALSE,
 ));
 
+Cookie::$salt = '28930v542308989h0f4fjksk-0sk';
+
 /**
  * Attach the file write to logging. Multiple writers are supported.
  */
@@ -108,6 +110,11 @@ Kohana::$config->attach(new Config_File);
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
+	// temporary until theme is taken from user/site settings
+	'theme'      => HYLAPATH.'themes/_default',    // default hyla theme
+	'tracker'    => HYLAPATH.'plugins/tracker',    // Tracker Plugin
+	'hyla'       => HYLAPATH.'core',               // Core hyla module
+	'acl'        => MODPATH.'acl',                 // ACL Module
 	'assets'     => MODPATH.'assets',              // Asset Library
 	'media'      => MODPATH.'media',               // Kohana CFS Media Module
 	'kostache'   => MODPATH.'kostache',            // View Classes
@@ -116,10 +123,6 @@ Kohana::modules(array(
 	'events'     => MODPATH.'event-dispatcher',    // Event Dispatcher,
 	'yform'      => MODPATH.'yform',               // Form Generation
 	'config-couchdb' => MODPATH.'config-driver-couchdb', // Config driver for CouchDB
-	// temporary until theme is taken from user/site settings
-	'theme'      => HYLAPATH.'themes/_default',    // default hyla theme
-	'tracker'    => HYLAPATH.'plugins/tracker',    // Tracker Plugin
-	'hyla'       => HYLAPATH.'core',               // Core hyla module
 ));
 
 // Include Sag for working with CouchDB
